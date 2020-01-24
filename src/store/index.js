@@ -1,7 +1,8 @@
 export const initialState = {
     loading: true,
     movies: [],
-    errorMessage: null
+    errorMessage: null,
+    activePage: 10
 };
 
 export const reducer = (state, action) => {

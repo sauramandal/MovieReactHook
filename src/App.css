@@ -1,109 +1,158 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .App-header {
-  background-color: #282c34;
-  height: 70px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  padding: 20px;
-  cursor: pointer;
+    background-color: #282c34;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    padding: 20px;
+    cursor: pointer;
 }
 
 .spinner {
-  height: 80px;
-  margin: auto;
+    height: 80px;
+    margin: auto;
 }
 
 .App-intro {
-  font-size: large;
+    font-size: large;
 }
 
 /* new css for movie component */
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .movies {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 
 .App-header h2 {
-  margin: 0;
+    margin: 0;
 }
 
 .add-movies {
-  text-align: center;
+    text-align: center;
 }
 
 .add-movies button {
-  font-size: 16px;
-  padding: 8px;
-  margin: 0 10px 30px 10px;
+    font-size: 16px;
+    padding: 8px;
+    margin: 0 10px 30px 10px;
 }
 
 .movie {
-  padding: 5px 25px 10px 25px;
-  max-width: 25%;
+    padding: 5px 25px 10px 25px;
+    max-width: 25%;
 }
 
 .errorMessage {
-  margin: auto;
-  font-weight: bold;
-  color: rgb(161, 15, 15);
+    margin: auto;
+    font-weight: bold;
+    color: rgb(161, 15, 15);
 }
 
 .search {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
 }
 
-input[type="submit"] {
-  padding: 5px;
-  background-color: transparent;
-  color: black;
-  border: 1px solid black;
-  width: 80px;
-  margin-left: 5px;
-  cursor: pointer;
+input[type='submit'] {
+    padding: 5px;
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    width: 80px;
+    margin-left: 5px;
+    cursor: pointer;
 }
 
-input[type="submit"]:hover {
-  background-color: #282c34;
-  color: antiquewhite;
+input[type='submit']:hover {
+    background-color: #282c34;
+    color: antiquewhite;
 }
 
-.search > input[type="text"]{
-  width: 40%;
-  min-width: 170px;
+.search > input[type='text'] {
+    width: 40%;
+    min-width: 170px;
 }
 
 @media screen and (min-width: 694px) and (max-width: 915px) {
-  .movie {
-    max-width: 33%;
-  }
+    .movie {
+        max-width: 33%;
+    }
 }
 
 @media screen and (min-width: 652px) and (max-width: 693px) {
-  .movie {
-    max-width: 50%;
-  }
+    .movie {
+        max-width: 50%;
+    }
 }
 
 @media screen and (max-width: 651px) {
-  .movie {
-    max-width: 100%;
-    margin: auto;
-  }
+    .movie {
+        max-width: 100%;
+        margin: auto;
+    }
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    opacity: 0.5;
+}
+
+.modal-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    outline: 0;
+}
+
+.modal {
+    z-index: 100;
+    background: white;
+    position: relative;
+    margin: 1.75rem auto;
+    border-radius: 3px;
+    max-width: 500px;
+    padding: 2rem;
+    height: 80%;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-close-button {
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    opacity: 0.3;
+    cursor: pointer;
+    border: none;
 }
