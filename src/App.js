@@ -2,6 +2,7 @@ import React, {useReducer, useEffect} from 'react';
 import {initialState, reducer} from './store';
 import Header from "./components/Header";
 import Search from "./components/Search";
+import Movie from "./components/Movie";
 import axios from "axios";
 import spinner from "./assets/ajax-loader.gif";
 import logo from './logo.svg';
@@ -59,7 +60,7 @@ const App = () => {
               ) : errorMessage ? (
                 <div className="errorMessage">{errorMessage}</div>
               ) : (
-                movies.map((movie, index) => (
+                movies && movies.map((movie, index) => (
                   <Movie key={`${index}-${movie.Title}`} movie={movie} />
                 ))
               )
