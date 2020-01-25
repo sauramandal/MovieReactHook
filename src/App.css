@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 .App {
     text-align: center;
 }
@@ -30,11 +31,11 @@
     box-sizing: border-box;
 }
 
-.movies {
+/* .movies {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-}
+} */
 
 .App-header h2 {
     margin: 0;
@@ -50,10 +51,9 @@
     margin: 0 10px 30px 10px;
 }
 
-.movie {
-    padding: 5px 25px 10px 25px;
+/* .movie {
     max-width: 25%;
-}
+} */
 
 .errorMessage {
     margin: auto;
@@ -89,7 +89,7 @@ input[type='submit']:hover {
     min-width: 170px;
 }
 
-@media screen and (min-width: 694px) and (max-width: 915px) {
+/* @media screen and (min-width: 694px) and (max-width: 915px) {
     .movie {
         max-width: 33%;
     }
@@ -106,7 +106,7 @@ input[type='submit']:hover {
         max-width: 100%;
         margin: auto;
     }
-}
+} */
 
 .modal-overlay {
     position: fixed;
@@ -139,7 +139,8 @@ input[type='submit']:hover {
     border-radius: 3px;
     max-width: 500px;
     padding: 2rem;
-    height: 80%;
+    height: 90%;
+    width: 60%;
 }
 
 .modal-header {
@@ -155,4 +156,169 @@ input[type='submit']:hover {
     opacity: 0.3;
     cursor: pointer;
     border: none;
+}
+
+.CircularProgressbar {
+    width: 10%;
+    position: relative;
+    left: 0;
+}
+
+/* Style main container */
+
+.cards {
+    float: left;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    flex-direction: row;
+    max-height: 100vh;
+    width: 70%;
+}
+
+.cards img {
+    margin: 10px;
+    border: 3px solid #000;
+    box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.3);
+    max-width: 23vw;
+}
+
+.left {
+    width: 75%;
+}
+
+.right {
+    width: 20%;
+    margin: 1%;
+    padding: 1%;
+    display: block;
+}
+
+.container-poster {
+    display: block;
+    width: 375px;
+    height: 400px;
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1);
+    position: absolute;
+    left: 50%;
+    top: 28%;
+    transform: translate(-50%, -50%);
+}
+
+.poster {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 1px 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+/* .poster__img {
+    height: 200px;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+} */
+.poster__info {
+    background: #fff;
+    padding: 5px;
+}
+.movie-heading {
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(31, 28, 28);
+    font-weight: 800;
+}
+.poster__title {
+    font-size: 1.2em;
+    font-weight: 300;
+    margin-bottom: 0.4em;
+}
+.poster__text {
+    font-size: 0.9em;
+    color: #999;
+    font-weight: 300;
+}
+
+.flex-container {
+    margin-top: 10px;
+    display: flex;
+}
+
+.search-container {
+    width: 490px;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    top: 5px;
+}
+input#search-bar {
+    margin: 0 auto;
+    width: 100%;
+    height: 45px;
+    padding: 0 20px;
+    font-size: 1rem;
+    border: 1px solid #d0cfce;
+    outline: none;
+}
+input#search-bar:focus {
+    border: 1px solid #008abf;
+    transition: 0.35s ease;
+    color: #008abf;
+}
+input#search-bar:focus::-webkit-input-placeholder {
+    transition: opacity 0.45s ease;
+    opacity: 0;
+}
+input#search-bar:focus::-moz-placeholder {
+    transition: opacity 0.45s ease;
+    opacity: 0;
+}
+input#search-bar:focus:-ms-placeholder {
+    transition: opacity 0.45s ease;
+    opacity: 0;
+}
+.search-icon {
+    position: relative;
+    float: right;
+    width: 75px;
+    height: 75px;
+    top: -62px;
+    right: -15px;
+}
+
+/* Filter button */
+button {
+    display: inline-block;
+    border: none;
+    padding: 1rem 2rem;
+    margin-top: 20px;
+    text-decoration: none;
+    background: #0069ed;
+    color: #ffffff;
+    font-family: sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out, transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 5px;
+    position: relative;
+    left: -33%;
+}
+
+button:hover,
+button:focus {
+    background: #0053ba;
+}
+
+button:focus {
+    outline: 1px solid #fff;
+    outline-offset: -4px;
+}
+
+button:active {
+    transform: scale(0.99);
+}
+.year-filter,
+.language-filter {
+    margin-bottom: 5px;
 }

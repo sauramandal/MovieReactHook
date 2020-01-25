@@ -1,16 +1,15 @@
-import React, { useReducer, useEffect } from 'react'
+import React, { useState, useReducer, useEffect } from 'react'
 import Pagination from 'react-js-pagination'
 import axios from 'axios'
 import { initialState, reducer } from './store'
+import Filter from './components/Filter'
 import Header from './components/Header'
 import Search from './components/Search'
 import Movie from './components/Movie'
 import spinner from './assets/ajax-loader.gif'
 import logo from './logo.svg'
-// import "bootstrap/scss/bootstrap.scss";
 import './App.css'
 
-const MOVIES_API_URL = ''
 const SEARCH_MOVIES_URL =
     'https://api.themoviedb.org/3/search/movie?api_key=ff771dd8f4f76b14aaeab6fe96370355&query='
 const App = () => {
@@ -26,21 +25,18 @@ const App = () => {
         })
     }, [])
 
-    const refreshPage = () => {
-        window.location.reload()
-    }
+    const refreshPage = () => window.location.reload()
 
     const search = searchString => {
         dispatch({
             type: 'SEARCH_MOVIES_REQUEST',
+            payload: searchString,
         })
-        axios(
-            `https://www.omdbapi.com/?s=${searchString}&apikey=4a3b711b`,
-        ).then(response => {
-            if (response.data.Response === 'True') {
+        axios(SEARCH_MOVIES_URL + searchString).then(response => {
+            if (response.data.results && response.data.results.length) {
                 dispatch({
                     type: 'SEARCH_MOVIES_SUCCESS',
-                    payload: response.data.Search,
+                    payload: response.data.results,
                 })
             } else {
                 dispatch({
@@ -51,18 +47,18 @@ const App = () => {
         })
     }
 
-    const { movies, errorMessage, loading, activePage } = state
-    console.log('movies', movies)
+    const { movies, errorMessage, loading, activePage, searchQuery } = state
+    const defaultSelectedMovie = movies[0]
     return (
         <div className="App">
-            <div className="m-container">
-                <Header text="Movies" />
-                <Search search={search} />
-
-                <h4>Favorite Movies</h4>
-                <div className="movies">
+            <Header text="Movies" />
+            <Search search={search} />
+            <div className="row">
+                <div className="cards left">
                     {loading && !errorMessage ? (
-                        <span>loading... </span>
+                        <span>
+                            <img src={spinner} alt="" />
+                        </span>
                     ) : errorMessage ? (
                         <div className="errorMessage">{errorMessage}</div>
                     ) : (
@@ -75,14 +71,21 @@ const App = () => {
                         ))
                     )}
                 </div>
-                {/* <Pagination
+                <div className="cards right">
+                    <Filter
+                        searchQuery={searchQuery}
+                        movie={defaultSelectedMovie}
+                    />
+                </div>
+            </div>
+
+            {/* <Pagination
           activePage={activePage}
           itemsCountPerPage={10}
           totalItemsCount={20}
           pageRangeDisplayed={5}
           onChange={() => false}
         /> */}
-            </div>
         </div>
     )
 }

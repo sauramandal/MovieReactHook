@@ -2,30 +2,33 @@ export const initialState = {
     loading: true,
     movies: [],
     errorMessage: null,
-    activePage: 10
-};
+    activePage: 10,
+    searchQuery: 'harry potter',
+}
 
 export const reducer = (state, action) => {
-    switch(action.type) {
-        case "SEARCH_MOVIES_REQUEST":
+    const { payload, error } = action
+    switch (action.type) {
+        case 'SEARCH_MOVIES_REQUEST':
             return {
                 ...state,
                 loading: true,
-                errorMessage: null
-            };
-        case "SEARCH_MOVIES_SUCCESS":
+                errorMessage: null,
+                searchQuery: payload,
+            }
+        case 'SEARCH_MOVIES_SUCCESS':
             return {
                 ...state,
                 loading: false,
-                movies: action.payload
-            };
-        case "SEARCH_MOVIES_FAILURE": 
+                movies: payload,
+            }
+        case 'SEARCH_MOVIES_FAILURE':
             return {
                 ...state,
                 loading: false,
-                errorMessage: action.error
+                errorMessage: error,
             }
         default:
-            return state;
+            return state
     }
 }

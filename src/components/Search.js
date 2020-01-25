@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 
 const Search = ({ search }) => {
     const [searchValue, setSearchValue] = useState('')
@@ -14,14 +14,32 @@ const Search = ({ search }) => {
     const callSearchFunction = evt => {
         evt.preventDefault()
         search(searchValue)
-        resetInputField()
     }
 
     return (
-        <form className="search">
-            <input value={searchValue} onChange={handleSearch} type="text" />
-            <input onClick={callSearchFunction} type="submit" value="SEARCH" />
-        </form>
+        <Fragment>
+            <form className="search-container">
+                <input
+                    id="search-bar"
+                    value={searchValue}
+                    onChange={handleSearch}
+                    type="text"
+                    placeholder="Search movies, tv shows.."
+                />
+                <a href="#">
+                    <img
+                        className="search-icon"
+                        src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"
+                        onClick={callSearchFunction}
+                    />
+                </a>
+                {/* <input
+                    onClick={callSearchFunction}
+                    type="submit"
+                    value="SEARCH"
+                /> */}
+            </form>
+        </Fragment>
     )
 }
 

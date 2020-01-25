@@ -23,25 +23,15 @@ const Movie = ({ movie }) => {
     // }
     return (
         <Fragment>
-            <div className="movie">
-                <MoviePopup isShowing={isShowing} hide={toggle} movie={movie} />
-                <h2>{movie.title}</h2>
-                <div>
-                    <img
-                        width="200"
-                        alt={`The movie titled: ${movie.title}`}
-                        src={poster}
-                        onClick={toggle}
-                    />
-                </div>
-                <div>
-                    <p>
-                        {movie.release_date
-                            ? `(${movie.release_date})`
-                            : 'unknown'}
-                    </p>
-                </div>
-            </div>
+            <img
+                className="gallery-image"
+                width="200"
+                alt={`The movie titled: ${movie.title}`}
+                src={poster}
+                onClick={toggle}
+                style={{ cursor: 'pointer' }}
+            />
+            <MoviePopup isShowing={isShowing} hide={toggle} movie={movie} />
         </Fragment>
     )
 }
