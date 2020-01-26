@@ -5,6 +5,7 @@ import { initialState, reducer } from './store'
 import Filter from './components/Filter'
 import Header from './components/Header'
 import Search from './components/Search'
+import Spinner from './components/Spinner'
 import Movie from './components/Movie'
 import spinner from './assets/ajax-loader.gif'
 import logo from './logo.svg'
@@ -48,11 +49,8 @@ const App = () => {
     }
 
     const filterSearch = (searchQuery, queryParams) => {
-        dispatch({
-            type: 'SEARCH_MOVIES_REQUEST',
-            payload: searchQuery,
-        })
         axios(SEARCH_MOVIES_URL + queryParams).then(response => {
+            console.log('resp', response.data)
             if (response.data.results && response.data.results.length) {
                 dispatch({
                     type: 'FILTER_MOVIES_SUCCESS',
@@ -60,8 +58,8 @@ const App = () => {
                 })
             } else {
                 dispatch({
-                    type: 'SEARCH_MOVIES_FAILURE',
-                    error: response.data.Error,
+                    type: 'FILTER_MOVIES_FAILURE',
+                    error: response.data.results,
                 })
             }
         })
@@ -77,9 +75,7 @@ const App = () => {
             <div className="row">
                 <div className="cards left">
                     {loading && !errorMessage ? (
-                        <span>
-                            <img src={spinner} alt="" />
-                        </span>
+                        <Spinner />
                     ) : errorMessage ? (
                         <div className="errorMessage">{errorMessage}</div>
                     ) : (

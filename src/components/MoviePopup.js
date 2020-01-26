@@ -32,14 +32,7 @@ const MoviePopup = ({ isShowing, hide, movie }) => {
                     role="dialog">
                     <div className="modal">
                         <div className="modal-header">
-                            <button
-                                type="button"
-                                className="modal-close-button"
-                                data-dismiss="modal"
-                                aria-label="Close"
-                                onClick={hide}>
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                            <div className="close" onClick={hide}></div>
                         </div>
                         <div class="container-poster">
                             <div class="poster">
@@ -56,22 +49,22 @@ const MoviePopup = ({ isShowing, hide, movie }) => {
                                     <p class="poster__text">{overview}</p>
                                 </div>
                             </div>
-                            <div className="flex-container">
-                                <div className="">Rating</div>
+                            <div className="box">
+                                <div className="box-container">Rating</div>
                                 <div className="circular-rating">
                                     <CircularProgressbar
                                         value={movieRating}
                                         text={`${movieRating}%`}
                                     />
                                 </div>
-                            </div>
-                            <div className="flex-container">
-                                <div className="">Vote Count</div>
-                                <div className="poster__text">{vote_count}</div>
-                            </div>
-                            <div className="flex-container">
-                                <div className="">Popularity</div>
-                                <div className="poster__text">{popularity}</div>
+                                <div className="box-container">Vote Count</div>
+                                <div className="box-container">
+                                    {vote_count}
+                                </div>
+                                <div className="box-container">Popularity</div>
+                                <div className="box-container">
+                                    {popularity}
+                                </div>
                             </div>
 
                             <a href="#">Find out more</a>

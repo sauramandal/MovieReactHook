@@ -1,6 +1,7 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useRef } from 'react'
 
 const Search = ({ search }) => {
+    const inputRef = useRef()
     const [searchValue, setSearchValue] = useState('')
 
     const handleSearch = evt => {
@@ -13,6 +14,11 @@ const Search = ({ search }) => {
 
     const callSearchFunction = evt => {
         evt.preventDefault()
+        if (searchValue === '') {
+            inputRef.current.focus()
+            alert('Please enter a movie name to search')
+            return
+        }
         search(searchValue)
     }
 
@@ -21,6 +27,7 @@ const Search = ({ search }) => {
             <form className="search-container">
                 <input
                     id="search-bar"
+                    ref={inputRef}
                     value={searchValue}
                     onChange={handleSearch}
                     type="text"
@@ -33,11 +40,6 @@ const Search = ({ search }) => {
                         onClick={callSearchFunction}
                     />
                 </a>
-                {/* <input
-                    onClick={callSearchFunction}
-                    type="submit"
-                    value="SEARCH"
-                /> */}
             </form>
         </Fragment>
     )

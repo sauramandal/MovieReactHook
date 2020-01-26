@@ -8,6 +8,7 @@ export const initialState = {
 
 export const reducer = (state, action) => {
     const { payload, error } = action
+    console.log('payload', payload, error)
     switch (action.type) {
         case 'SEARCH_MOVIES_REQUEST':
             return {

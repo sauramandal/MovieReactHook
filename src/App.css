@@ -55,11 +55,11 @@
     max-width: 25%;
 } */
 
-.errorMessage {
+/* .errorMessage {
     margin: auto;
     font-weight: bold;
     color: rgb(161, 15, 15);
-}
+} */
 
 .search {
     display: flex;
@@ -88,25 +88,6 @@ input[type='submit']:hover {
     width: 40%;
     min-width: 170px;
 }
-
-/* @media screen and (min-width: 694px) and (max-width: 915px) {
-    .movie {
-        max-width: 33%;
-    }
-}
-
-@media screen and (min-width: 652px) and (max-width: 693px) {
-    .movie {
-        max-width: 50%;
-    }
-}
-
-@media screen and (max-width: 651px) {
-    .movie {
-        max-width: 100%;
-        margin: auto;
-    }
-} */
 
 .modal-overlay {
     position: fixed;
@@ -242,6 +223,19 @@ input[type='submit']:hover {
     display: flex;
 }
 
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5%;
+}
+.box > * {
+    flex: 1 1 180px;
+}
+.box-container {
+    margin: 2px;
+    padding: 2px;
+}
+
 .search-container {
     width: 490px;
     display: block;
@@ -283,8 +277,35 @@ input#search-bar:focus:-ms-placeholder {
     top: -62px;
     right: -15px;
 }
+/* Close button */
+.close {
+    position: absolute;
+    right: 32px;
+    top: 32px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.3;
+}
+.close:before,
+.close:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: rgb(41, 40, 40);
+}
+.close:before {
+    transform: rotate(45deg);
+}
+.close:after {
+    transform: rotate(-45deg);
+}
 
 /* Filter button */
+.filter-container {
+    display: flex;
+}
 button {
     display: inline-block;
     border: none;
@@ -301,11 +322,13 @@ button {
     -webkit-appearance: none;
     -moz-appearance: none;
     border-radius: 5px;
-    position: relative;
-    left: -33%;
+}
+.clear-btn {
+    margin-left: 5px;
+    background: lightgreen;
 }
 
-button:hover,
+/* button:hover,
 button:focus {
     background: #0053ba;
 }
@@ -317,7 +340,7 @@ button:focus {
 
 button:active {
     transform: scale(0.99);
-}
+} */
 .year-filter,
 .language-filter {
     margin-bottom: 5px;

@@ -17,7 +17,6 @@ const languages = [
 
 const Filter = ({ searchQuery, movie, filterSearch }) => {
     console.log('sq', searchQuery)
-    const [state, dispatch] = useReducer(reducer, initialState)
     const [year, setYear] = useState(
         movie && movie.release_date ? movie.release_date : '2020',
     )
@@ -28,26 +27,14 @@ const Filter = ({ searchQuery, movie, filterSearch }) => {
             searchQuery +
             `&language=${language}&page=1&include_adult=false&region=US&year=${year}`
         filterSearch(searchQuery, query)
-        // const queryString =
-        //     searchQuery +
-        //     `&language=${language}&page=1&include_adult=false&region=US&year=${year}`
-        // axios(SEARCH_MOVIES_URL + queryString).then(response => {
-        //     if (response.data.results && response.data.results.length) {
-        //         dispatch({
-        //             type: 'SEARCH_MOVIES_SUCCESS',
-        //             payload: response.data.results,
-        //         })
-        //     } else {
-        //         dispatch({
-        //             type: 'SEARCH_MOVIES_FAILURE',
-        //             error: response.data.Error,
-        //         })
-        //     }
-        // })
     }
 
     const handleChangeYear = evt => setYear(evt.value)
-
+    const handleClear = evt => {
+        evt.preventDefault()
+        setYear('2020')
+        setLanguage('English')
+    }
     const handleChangeLanguage = evt => setLanguage(evt.value)
 
     return (
@@ -75,6 +62,9 @@ const Filter = ({ searchQuery, movie, filterSearch }) => {
                 <div class="filter-container">
                     <button class="filter-btn" onClick={handleFilter}>
                         Apply
+                    </button>
+                    <button class="clear-btn" onClick={handleClear}>
+                        Clear
                     </button>
                 </div>
             </div>
