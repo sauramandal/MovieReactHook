@@ -47,7 +47,28 @@ const App = () => {
         })
     }
 
+    const filterSearch = (searchQuery, queryParams) => {
+        dispatch({
+            type: 'SEARCH_MOVIES_REQUEST',
+            payload: searchQuery,
+        })
+        axios(SEARCH_MOVIES_URL + queryParams).then(response => {
+            if (response.data.results && response.data.results.length) {
+                dispatch({
+                    type: 'FILTER_MOVIES_SUCCESS',
+                    payload: response.data.results,
+                })
+            } else {
+                dispatch({
+                    type: 'SEARCH_MOVIES_FAILURE',
+                    error: response.data.Error,
+                })
+            }
+        })
+    }
+
     const { movies, errorMessage, loading, activePage, searchQuery } = state
+    console.log('state', state)
     const defaultSelectedMovie = movies[0]
     return (
         <div className="App">
@@ -75,6 +96,7 @@ const App = () => {
                     <Filter
                         searchQuery={searchQuery}
                         movie={defaultSelectedMovie}
+                        filterSearch={filterSearch}
                     />
                 </div>
             </div>

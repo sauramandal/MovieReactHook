@@ -28,6 +28,18 @@ export const reducer = (state, action) => {
                 loading: false,
                 errorMessage: error,
             }
+        case 'FILTER_MOVIES_SUCCESS':
+            return {
+                ...state,
+                loading: false,
+                movies: payload,
+            }
+        case 'FILTER_MOVIES_FAILURE':
+            return {
+                ...state,
+                loading: false,
+                errorMessage: error,
+            }
         default:
             return state
     }

@@ -15,7 +15,7 @@ const languages = [
     { value: 'zh', label: 'Chinese' },
 ]
 
-const Filter = ({ searchQuery, movie }) => {
+const Filter = ({ searchQuery, movie, filterSearch }) => {
     console.log('sq', searchQuery)
     const [state, dispatch] = useReducer(reducer, initialState)
     const [year, setYear] = useState(
@@ -24,22 +24,26 @@ const Filter = ({ searchQuery, movie }) => {
     const [language, setLanguage] = useState('English')
     const handleFilter = evt => {
         evt.preventDefault()
-        const queryString =
+        const query =
             searchQuery +
             `&language=${language}&page=1&include_adult=false&region=US&year=${year}`
-        axios(SEARCH_MOVIES_URL + queryString).then(response => {
-            if (response.data.results && response.data.results.length) {
-                dispatch({
-                    type: 'SEARCH_MOVIES_SUCCESS',
-                    payload: response.data.results,
-                })
-            } else {
-                dispatch({
-                    type: 'SEARCH_MOVIES_FAILURE',
-                    error: response.data.Error,
-                })
-            }
-        })
+        filterSearch(searchQuery, query)
+        // const queryString =
+        //     searchQuery +
+        //     `&language=${language}&page=1&include_adult=false&region=US&year=${year}`
+        // axios(SEARCH_MOVIES_URL + queryString).then(response => {
+        //     if (response.data.results && response.data.results.length) {
+        //         dispatch({
+        //             type: 'SEARCH_MOVIES_SUCCESS',
+        //             payload: response.data.results,
+        //         })
+        //     } else {
+        //         dispatch({
+        //             type: 'SEARCH_MOVIES_FAILURE',
+        //             error: response.data.Error,
+        //         })
+        //     }
+        // })
     }
 
     const handleChangeYear = evt => setYear(evt.value)
@@ -70,7 +74,7 @@ const Filter = ({ searchQuery, movie }) => {
             <div className="apply-filter">
                 <div class="filter-container">
                     <button class="filter-btn" onClick={handleFilter}>
-                        Filter
+                        Apply
                     </button>
                 </div>
             </div>
